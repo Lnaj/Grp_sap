@@ -1,2 +1,3 @@
 # Grp_sap
-Grp project 3 applications
+Customer App
+Stock App
