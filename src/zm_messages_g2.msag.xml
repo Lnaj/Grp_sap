@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZM_MESSAGES_G2</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>Messages group 2</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZM_MESSAGES_G2</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>Address can&apos;t be deleted.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZM_MESSAGES_G2</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Author can&apos;t be deleted because there are still books in stock.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZM_MESSAGES_G2</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Author birthdate can&apos;t be in the future.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZM_MESSAGES_G2</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Date is succesfully created.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZM_MESSAGES_G2</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>There are still seatings left.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZM_MESSAGES_G2</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>OVERBOOKED!</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZM_MESSAGES_G2</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>The luggageweight is added correctly!</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

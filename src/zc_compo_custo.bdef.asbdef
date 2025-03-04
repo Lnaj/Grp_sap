@@ -1,0 +1,144 @@
+managed implementation in class zbp_c_compo_custo unique;
+strict ( 2 );
+
+define behavior for zc_compo_custo alias Customer
+persistent table zcustomer
+lock master
+authorization master ( none )
+etag master LocalLastChangedBy
+{
+  mapping for zcustomer
+    {
+      CustomerId         = customer_id;
+      DateOfBirth        = date_of_birth;
+      Email              = email;
+      FirstName          = first_name;
+      LastName           = last_name;
+      Nationality        = nationality;
+      Phone              = phone;
+      LocalCreatedAt     = local_created_at;
+      LocalCreatedBy     = local_created_by;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+
+  create;
+  update;
+  delete;
+  field ( readonly, numbering : managed ) CustomerId;
+  field ( readonly ) LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt;
+  field ( mandatory ) FirstName, LastName, Email;
+
+  association _adress { create; }
+  association _order { create; }
+
+}
+
+define behavior for zc_compo_adress alias adress
+persistent table zadress
+lock dependent by _cust
+authorization dependent by _cust
+etag master LocalLastChangedBy
+{
+  mapping for zadress
+    {
+      CustomerId         = customer_id;
+      AddressId          = address_id;
+      City               = city;
+      Country            = country;
+      Housenumber        = housenumber;
+      PostalCode         = postal_code;
+      Street             = street;
+      LocalCreatedAt     = local_created_at;
+      LocalCreatedBy     = local_created_by;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+
+  delete ( precheck );
+  update;
+  field ( readonly ) LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt;
+  field ( readonly, numbering : managed ) AddressId;
+  field ( readonly ) CustomerId;
+  field ( mandatory ) Street, Housenumber, PostalCode, City, Country;
+
+  association _cust;
+
+
+}
+
+
+define behavior for zc_compo_order alias order
+persistent table zorder
+lock dependent by _cust
+authorization dependent by _cust
+etag master LocalLastChangedBy
+{
+  mapping for zorder
+    {
+      AddressID          =  address_id;
+      OrderId            = order_id;
+      CustomerId         = customer_id;
+      BillingAdress      = billing_adress;
+      Currency           = currency;
+      DeliveryAdress     = delivery_adress;
+      ItemCount          = item_count;
+      Quantiy = quantity;
+      OrderDate          = order_date;
+      OrderStatus        = order_status;
+      TotalPrice         = total_price;
+      LocalCreatedAt     = local_created_at;
+      LocalCreatedBy     = local_created_by;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+
+
+  update;
+  delete;
+
+  field ( readonly ) LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt;
+  field ( readonly, numbering : managed ) OrderId;
+  field ( readonly ) CustomerId, AddressID ;
+
+ association _Oitems{ create; }
+  association _cust;
+
+}
+
+
+
+define behavior for zc_compo_orderitems alias orderitems
+persistent table zorderitem
+lock dependent by _cust
+authorization dependent by _cust
+etag master LocalLastChangedBy
+{
+  mapping for zorderitem
+    {
+    OrderitemId=orderitem_id;
+    BookId=book_id;
+      AddressID          =  address_id;
+      OrderId            = order_id;
+      CustomerId         = customer_id;
+            Price        = price;
+      Quantity           = quantity;
+      TotalPrice         = total_price;
+      LocalCreatedAt     = local_created_at;
+      LocalCreatedBy     = local_created_by;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+
+
+  update;
+  delete;
+
+  field ( readonly ) LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt;
+  field ( readonly, numbering : managed ) OrderitemId  ;
+  field ( readonly ) CustomerId , OrderId,AddressId;
+
+association _cust;
+  association _Oitems;
+
+}

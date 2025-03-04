@@ -1,0 +1,119 @@
+@Metadata.layer: #CUSTOMER
+@Search.searchable: true
+@UI.headerInfo: {
+typeName: 'Customer',
+typeNamePlural: 'Customers',
+title: { value: 'FirstName', label: 'Customer Name' }
+
+}
+
+
+annotate view zc_proj_custo with
+{
+
+  // Facets
+  @UI.facet: [
+    { id: 'HeaderFacet',
+      purpose: #HEADER,
+      label: 'Customer ID',
+      type: #FIELDGROUP_REFERENCE,
+      targetQualifier: 'HeaderInfo',
+      position: 10 },
+    { id: 'PersonalInfo',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Personal Info',
+      targetQualifier: 'PersonalInfo',
+      position: 20 },
+    { id: 'ContactInfo',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Contact Info',
+      targetQualifier: 'ContactInfo',
+      position: 30 },
+        { id: 'TechnicalInfo',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Technical Info',
+      targetQualifier: 'TechnicalInfo',
+      position: 40 },
+
+    { id: 'Address', purpose: #STANDARD, position: 50, label: 'Address',
+                  type: #LINEITEM_REFERENCE, targetElement: '_adress' },
+
+
+     { id: 'Order', purpose: #STANDARD, position: 60, label: 'Order',
+                  type: #LINEITEM_REFERENCE, targetElement: '_order' }
+  ]
+
+
+
+
+   // Selection Fields and Identification
+
+  @UI.fieldGroup: [{ position: 10, qualifier: 'HeaderInfo', label: 'ID' }]
+  CustomerId;
+
+
+
+  @Search.fuzzinessThreshold: 0.7
+  @Search.defaultSearchElement: true
+  @UI.selectionField: [{ position: 20 }]
+  @UI:{ lineItem: [{ position: 10, label: 'First Name', importance: #HIGH  }] }
+  @UI.identification: [{ position: 20, qualifier: 'PersonalInfo' ,label: 'First Name'}]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'PersonalInfo' }]
+  @EndUserText.label: 'First Name'
+  FirstName;
+
+  @UI.selectionField: [{ position: 30 }]
+  @Search.defaultSearchElement: true
+  @Search.fuzzinessThreshold: 0.7
+  @UI:{ lineItem: [{ position: 20, label: 'Last Name', importance: #HIGH  }] }
+  @UI.identification: [{ position: 30, qualifier: 'PersonalInfo' , label: 'Last Name'  }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'PersonalInfo', label: 'Last Name'  }]
+  LastName;
+
+
+  @UI:{ lineItem: [{ position: 40, label: 'Email', importance: #MEDIUM  }] }
+  @UI.identification: [{ position: 30, qualifier: 'ContactInfo'   }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'ContactInfo', label: 'Email' }]
+  Email;
+
+  // Additional Fields
+  @UI:{ lineItem: [{ position: 30, label: 'Phone Number', importance: #MEDIUM  }] }
+  @UI.identification: [{ position: 30, qualifier: 'ContactInfo'  }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'ContactInfo', label: 'Phone Number' }]
+  Phone;
+
+  @UI.identification: [{ position: 40, qualifier: 'PersonalInfo' , label: 'Nationality'  }]
+  @UI.fieldGroup: [{ position: 60, qualifier: 'PersonalInfo' }]
+  @EndUserText.label: 'Nationality'
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZVH_NATIONALITIES_G2', element: 'Nationality' } }]
+  Nationality;
+
+
+  @UI.identification: [{ position: 50, qualifier: 'PersonalInfo' , label: 'Birth date'  }]
+  @UI.fieldGroup: [{ position: 70, qualifier: 'PersonalInfo' }]
+  @EndUserText.label: 'Date of Birth'
+  DateOfBirth;
+
+
+
+  @UI.identification: [{ position: 60, qualifier: 'TechnicalInfo' , label: 'Created by'  }]
+  @UI.fieldGroup: [{ position: 60, qualifier: 'TechnicalInfo', label: 'Created by' }]
+  LocalCreatedBy;
+
+  @UI.identification: [{ position: 70, qualifier: 'TechnicalInfo' , label: 'Created at'  }]
+  @UI.fieldGroup: [{ position: 70, qualifier: 'TehnicalInfo', label: 'Created at' }]
+  LocalCreatedAt;
+
+
+  @UI.identification: [{ position: 80, qualifier: 'TechnicalInfo' , label: 'Last changed by'  }]
+  @UI.fieldGroup: [{ position: 80, qualifier: 'TechnicalInfo', label: 'Last changed by' }]
+  LocalLastChangedBy;
+
+  @UI.identification: [{ position: 90, qualifier: 'TechnicalInfo' , label: 'Last changed at'  }]
+  @UI.fieldGroup: [{ position: 90, qualifier: 'TechnicalInfo', label: 'Last changed at' }]
+  LocalLastChangedAt;
+
+}

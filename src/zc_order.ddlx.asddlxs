@@ -1,0 +1,130 @@
+ @Metadata.layer: #CUSTOMER
+@Search.searchable: true
+@UI.headerInfo: {
+typeName: 'Order',
+typeNamePlural: 'Orders',
+title: { value: 'OrderDate' }
+
+}
+
+
+annotate view zc_proj_order with
+{
+
+  @UI.facet: [
+    { id: 'HeaderFacet',
+      purpose: #HEADER,
+      label: 'Order',
+      type: #FIELDGROUP_REFERENCE,
+      targetQualifier: 'HeaderInfo',
+      position: 10 },
+
+    { id: 'OrderInfo',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Order Info',
+      targetQualifier: 'OrderInfo',
+      position: 20 },
+
+     { id: 'AddressInfo',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Address Info',
+      targetQualifier: 'AddressInfo',
+      position: 30 },
+      
+      { id: 'TechnicalInfo',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Technical Info',
+      targetQualifier: 'TechnicalInfo',
+      position: 40 }
+//      { id: 'Order Items', purpose: #STANDARD, position: 50, label: 'Items',
+//                  type: #LINEITEM_REFERENCE, targetElement: '_Oitems' }
+      
+
+       ]
+
+  @UI.identification: [{ position: 10, qualifier: 'OrderInfo' , label: 'Order Date' }]
+  @UI.selectionField: [{ position: 10 }]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'OrderInfo', label: 'Order Info' }]
+  @UI.lineItem: [ { position: 20, label: 'Order Date', importance: #HIGH } ]
+  OrderDate;
+
+
+  @UI.identification: [{ position: 20, qualifier: 'OrderInfo' , label: 'Order Status' }]
+  @UI.selectionField: [{ position: 10 }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'OrderInfo', label: 'Order Info' }]
+  @Search.defaultSearchElement: true
+  @UI.lineItem: [ { position: 30, label: 'Order Status', importance: #HIGH } ]
+  OrderStatus;
+
+  @UI.identification: [{ position: 30, qualifier: 'OrderInfo' , label: 'Item' }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'OrderInfo', label: 'Order Info' }]
+  @UI.lineItem: [ { position: 40, label: 'Item count', importance: #HIGH } ]
+  ItemCount;
+
+ @UI.identification: [{ position: 30, qualifier: 'OrderInfo' , label: 'Quantity' }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'OrderInfo', label: 'Order Info' }]
+  @UI.lineItem: [ { position: 40, label: 'Quantity', importance: #HIGH } ]
+  Quantiy;
+
+  @UI.identification: [{ position: 40, qualifier: 'OrderInfo' , label: 'Total price' }]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'OrderInfo', label: 'Order Info' }]
+  @UI.lineItem: [ { position: 50, label: 'Total price', importance: #HIGH } ]
+  TotalPrice;
+
+  @UI.identification: [{ position: 50, qualifier: 'OrderInfo' , label: 'Currency' }]
+  @UI.fieldGroup: [{ position: 50, qualifier: 'OrderInfo', label: 'Order Info' }]
+  @UI.lineItem: [ { position: 60, label: 'Currency', importance: #HIGH } ]
+  @Consumption.valueHelpDefinition: [{  entity: {  name: 'zc_ordercurrency_vh', element: 'Currency' } }]
+  Currency;
+
+
+
+  @UI.identification: [{ position: 10, qualifier: 'AddressInfo' , label: 'Billing Adress' }]
+  @UI.fieldGroup: [{ position: 60, qualifier: 'AddressInfo', label: 'Adress Info' }]
+  @Consumption.valueHelpDefinition: [{  entity: {  name: 'zc_compo_adress', element: 'Street' } }]
+  
+  BillingAdress;
+
+
+  @UI.identification: [{ position: 20, qualifier: 'AddressInfo' , label: 'Delivery Adress' }]
+  @UI.fieldGroup: [{ position: 70, qualifier: 'AdressInfo', label: 'Adress Info' }]
+  @Consumption.valueHelpDefinition: [{  entity: {  name: 'zc_compo_adress', element: 'Street' } }]
+  
+  DeliveryAdress;
+
+  
+  @UI.fieldGroup: [{ position: 10, qualifier: 'HeaderInfo', label: 'Order ID' }]
+  OrderId;
+
+  @UI.fieldGroup: [{ position: 20, qualifier: 'HeaderInfo', label: 'Customer ID' }]
+  CustomerId;
+  
+  @UI.identification: [{ position: 60, qualifier: 'TechnicalInfo' , label: 'Created by' }]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'TechnicalInfo', label: 'Created by' }]
+  LocalCreatedBy;
+
+
+  @UI.identification: [{ position: 70, qualifier: 'TechnicalInfo' , label: 'Created at' }]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'TechnicalInfo', label: 'Created at' }]
+  LocalCreatedAt;
+
+
+  @UI.identification: [{ position: 80, qualifier: 'TechnicalInfo' , label: 'Last changed by' }]
+  @UI.fieldGroup: [{ position: 50, qualifier: 'TechnicalInfo', label: 'Last changed by' }]
+  LocalLastChangedBy;
+
+
+  @UI.identification: [{ position: 90, qualifier: 'TechnicalInfo' , label: 'Last changed at' }]
+  @UI.fieldGroup: [{ position: 60, qualifier: 'TechnicalInfo', label: 'Last changed at' }]
+  LocalLastChangedAt;
+
+
+
+
+
+
+
+}

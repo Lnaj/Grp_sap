@@ -1,0 +1,95 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo: {
+    typeName: 'Address',
+    typeNamePlural: 'Addresses',
+    title: { value: 'Street', label: 'Street Address' }
+ }
+@Search.searchable: true
+ 
+
+annotate view zc_proj_adress with {
+
+  // Facets
+  @UI.facet: [
+    { id: 'HeaderFacet',
+      purpose: #HEADER,
+      label: 'ID Info',
+      type: #FIELDGROUP_REFERENCE,
+      targetQualifier: 'HeaderInfo',
+      position: 10 },
+      
+    { id: 'AddressInfo',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Address Info',
+      targetQualifier: 'AddressInfo',
+      position: 20 },
+      
+     {  id: 'TechnicalFacet',
+      purpose: #STANDARD,
+      label: 'Technical Info',
+      type: #FIELDGROUP_REFERENCE,
+      targetQualifier: 'TechnicalInfo',
+      position: 30 }
+     
+  ]
+
+
+
+  // Selection Fields and Identification
+  @UI.fieldGroup: [{ position: 10, qualifier: 'HeaderInfo' , label: 'Address ID' }]
+//  @Search.defaultSearchElement: true
+  AddressId;
+
+
+  @UI.lineItem: [ { position: 10, label: 'Street', importance: #HIGH } ]          
+  @UI.identification: [{ position: 20, qualifier: 'AddressInfo'  , label: 'Street' }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'AddressInfo' }]
+  @UI.selectionField: [{ position: 10 }]
+  @Search.defaultSearchElement: true
+  @Search.fuzzinessThreshold: 0.7
+  Street;
+  
+  @UI.lineItem: [ { position: 20, label: 'House Number', importance: #HIGH } ]
+  @UI.identification: [{ position: 30, qualifier: 'AddressInfo'  , label: 'Number' }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'AddressInfo' }]
+  Housenumber;
+
+
+  @UI.lineItem: [ { position: 30, label: 'City', importance: #MEDIUM } ]
+  @UI.selectionField: [{ position: 40 }]
+  @UI.identification: [{ position: 40, qualifier: 'AddressInfo' , label: 'City' }]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'AddressInfo' }]
+  @Search.defaultSearchElement: true
+  @Search.fuzzinessThreshold: 0.7
+  City;
+
+  @UI.lineItem: [ { position: 40, label: 'Postal Code', importance: #MEDIUM } ]
+  @UI.selectionField: [{ position: 50 }]
+  @UI.identification: [{ position: 50, qualifier: 'AddressInfo', label: 'Postal Code' }]
+  @UI.fieldGroup: [{ position: 50, qualifier: 'AddressInfo' }]
+  PostalCode;
+
+  @UI.lineItem: [ { position: 50, label: 'Country', importance: #MEDIUM } ]
+  @UI.selectionField: [{ position: 60 }]
+  @UI.identification: [{ position: 60, qualifier: 'AddressInfo' , label: 'Country'}]
+  @UI.fieldGroup: [{ position: 60, qualifier: 'AddressInfo' }]
+  @Search.defaultSearchElement: true
+  @Search.fuzzinessThreshold: 0.7
+  Country;
+
+
+  @UI.fieldGroup: [{ position: 70, qualifier: 'TechnicalInfo' }]
+  LocalCreatedBy;
+
+  @UI.fieldGroup: [{ position: 80, qualifier: 'TechnicalInfo' }]
+  LocalCreatedAt;
+
+  @UI.fieldGroup: [{ position: 90, qualifier: 'TechnicalInfo' }]
+  LocalLastChangedBy;
+
+  @UI.fieldGroup: [{ position: 100, qualifier: 'TechnicalInfo' }]
+  LocalLastChangedAt;
+
+
+}

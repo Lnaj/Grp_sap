@@ -1,0 +1,6 @@
+@EndUserText.label: 'service def custo'
+define service Zsd_cust {
+  expose zc_proj_custo  as customer;
+  expose zc_proj_adress as adress;
+  expose zc_proj_order  as orders;
+}
